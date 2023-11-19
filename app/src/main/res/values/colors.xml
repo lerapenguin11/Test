@@ -11,7 +11,7 @@
     <color name="yellow_light">#fff4cc</color>
     <color name="blue">#0D72FF</color>
     <color name="gray">#828796</color>
-    <color name="black_90">#90000000</color>
+    <color name="black_90">#1a1a1a</color>
     <color name="gray_dark">#2C3035</color>
     <color name="gray_light">#F6F6F9</color>
 </resources>

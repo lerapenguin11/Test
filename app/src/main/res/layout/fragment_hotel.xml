@@ -87,7 +87,7 @@
                         android:layout_marginStart="1dp"
                         android:fontFamily="@font/sf_pro_display_medium"
                         android:includeFontPadding="false"
-                        android:text="5 Превосходно"
+                        tools:text="3 Превосходно"
                         android:textColor="@color/yellow"
                         android:textSize="16sp"
                         app:layout_constraintBottom_toBottomOf="@+id/star"
@@ -103,7 +103,7 @@
                     android:layout_marginEnd="16dp"
                     android:fontFamily="@font/sf_pro_display_medium"
                     android:includeFontPadding="false"
-                    android:text="Steigenberger Makadi"
+                    tools:text="Steigenberger Makadi"
                     android:textColor="@color/black"
                     android:textSize="22sp"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -118,7 +118,7 @@
                     android:layout_marginTop="6dp"
                     android:layout_marginEnd="16dp"
                     android:fontFamily="@font/sf_pro_display_medium"
-                    android:text="Madinat Makadi, Safaga Road, Makadi Bay, Египет"
+                    tools:text="Madinat Makadi, Safaga Road, Makadi Bay, Египет"
                     android:textColor="@color/blue"
                     android:textSize="14sp"
                     app:layout_constraintStart_toStartOf="parent"
@@ -140,7 +140,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/sf_pro_display_semibold"
-                        android:text="от 134 673 ₽"
+                        tools:text="от 134 673 ₽"
                         android:textColor="@color/black"
                         android:textSize="30sp" />
 
@@ -152,7 +152,7 @@
                         android:layout_marginStart="5dp"
                         android:layout_weight="1"
                         android:fontFamily="@font/sf_pro_display_regular"
-                        android:text="за тур с перелётом"
+                        tools:text="за тур с перелётом"
                         android:textColor="@color/gray"
                         android:textSize="16sp" />
                 </LinearLayout>

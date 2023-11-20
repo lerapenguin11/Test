@@ -1,18 +1,20 @@
 package com.example.test.presentation
 
+import android.annotation.SuppressLint
 import android.os.Bundle
-import android.os.Handler
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.example.test.R
+import androidx.fragment.app.Fragment
+import androidx.lifecycle.Observer
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.example.test.databinding.FragmentHotelBinding
 import com.example.test.presentation.adapter.CarouselAdapter
+import com.example.test.presentation.adapter.PeculiaritiesAdapter
 import com.example.test.viewmodel.HotelViewModel
 import org.koin.androidx.viewmodel.ext.android.viewModel
-import java.util.Timer
-import java.util.TimerTask
+
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -23,8 +25,7 @@ class HotelFragment : Fragment() {
     private var _binding : FragmentHotelBinding? = null
     private val binding get() = _binding!!
     private val viewModel by viewModel<HotelViewModel>()
-    private lateinit var stringList : ArrayList<String>
-
+    private lateinit var optionAdapter : PeculiaritiesAdapter
 
     // TODO: Rename and change types of parameters
     private var param1: String? = null
@@ -45,20 +46,37 @@ class HotelFragment : Fragment() {
     ): View? {
 
         _binding = FragmentHotelBinding.inflate(inflater, container, false)
-        initCarousel()
-
+        observeDataHotel()
 
         return binding.root
     }
 
-    private fun initCarousel() {
-        //TODO delete
-        stringList = ArrayList<String>()
-        stringList.add("https://avatars.mds.yandex.net/get-altay/374295/2a0000015b1791c294a596d0698883284a49/orig")
-        stringList.add("https://romani-hotel.ru/wp-content/uploads/2020/01/ihks7gw2vgyv-nazvany-5-samykh-griaznykh-predmetov-v-nomerakh-ot.jpg")
+    @SuppressLint("SetTextI18n")
+    private fun observeDataHotel() {
+        viewModel.hotelRemoteLiveData.observe(viewLifecycleOwner, Observer {hotel ->
+            binding.tvRating.text = "${hotel?.rating} ${hotel?.rating_name}"
+            binding.tvNameHotel.text = hotel?.name
+            binding.tvAdress.text = hotel?.adress
+            binding.tvPrice.text = "от ${hotel?.minimal_price} ₽"
+            binding.tvPriceForIt.text = hotel?.price_for_it
+            binding.tvDescription.text = hotel?.about_the_hotel?.description
+            hotel?.image_urls?.let { initCarousel(it) }
+            hotel?.about_the_hotel?.peculiarities?.let { setOptionRecyclerView(it) }
+        })
+    }
+
+    private fun setOptionRecyclerView(peculiarities: List<String>) {
+        val staggeredGridLayoutManager = StaggeredGridLayoutManager(2, LinearLayoutManager.VERTICAL)
+        binding.rvPeculiarities.setLayoutManager(staggeredGridLayoutManager)
+        optionAdapter = PeculiaritiesAdapter()
+        optionAdapter.submitList(peculiarities)
+        binding.rvPeculiarities.adapter = optionAdapter
+    }
+
+    private fun initCarousel(imageUrls: List<String>) {
         val adapterViewPager = CarouselAdapter(
             requireContext(),
-            stringList
+            imageUrls
         )
         binding.carouselLayout.viewPager.adapter = adapterViewPager
         binding.carouselLayout.dotsIndicator.setViewPager(binding.carouselLayout.viewPager)

@@ -1,4 +1,6 @@
-package com.example.data.api.model
+package com.example.data.api.model.hotel
+
+import com.example.data.api.model.hotel.AboutTheHotel
 
 data class HotelApiResponse(
     val about_the_hotel: AboutTheHotel,

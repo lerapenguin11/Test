@@ -8,6 +8,9 @@ import android.view.ViewGroup
 import com.example.test.R
 import com.example.test.databinding.FragmentRoomBinding
 import com.example.test.utilits.replaceFragmentMain
+import com.example.test.viewmodel.HotelViewModel
+import com.example.test.viewmodel.RoomViewModel
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -22,6 +25,7 @@ private const val ARG_PARAM2 = "param2"
 class RoomFragment : Fragment() {
     private var _binding : FragmentRoomBinding? = null
     private val binding get() = _binding!!
+    private val viewModel by viewModel<RoomViewModel>()
 
     // TODO: Rename and change types of parameters
     private var param1: String? = null
@@ -33,6 +37,8 @@ class RoomFragment : Fragment() {
             param1 = it.getString(ARG_PARAM1)
             param2 = it.getString(ARG_PARAM2)
         }
+
+        viewModel.getDataRoom()
     }
 
     override fun onCreateView(
@@ -42,8 +48,13 @@ class RoomFragment : Fragment() {
 
         _binding = FragmentRoomBinding.inflate(inflater, container, false)
         binding.titleRoom.isSelected = true
+        observeDataRoom()
 
         return binding.root
+    }
+
+    private fun observeDataRoom() {
+
     }
 
     companion object {

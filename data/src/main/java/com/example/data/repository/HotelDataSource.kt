@@ -1,9 +1,9 @@
-package com.example.domain.repository
+package com.example.data.repository
 
 import com.example.domain.common.ResultTest
 import com.example.domain.entity.hotel.Hotel
 
-interface HotelRepository {
+interface HotelDataSource {
 
     suspend fun getHotel() : ResultTest<Hotel>
 }

@@ -9,6 +9,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
+import com.example.test.R
 import com.example.test.databinding.FragmentHotelBinding
 import com.example.test.presentation.adapter.CarouselAdapter
 import com.example.test.presentation.adapter.PeculiaritiesAdapter
@@ -16,28 +17,14 @@ import com.example.test.utilits.replaceFragmentMain
 import com.example.test.viewmodel.HotelViewModel
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
-
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
-
 class HotelFragment : Fragment() {
     private var _binding : FragmentHotelBinding? = null
     private val binding get() = _binding!!
     private val viewModel by viewModel<HotelViewModel>()
     private lateinit var optionAdapter : PeculiaritiesAdapter
 
-    // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
-        }
         viewModel.getDataHotel()
     }
 
@@ -49,9 +36,15 @@ class HotelFragment : Fragment() {
         _binding = FragmentHotelBinding.inflate(inflater, container, false)
         observeDataHotel()
 
-        binding.btNumberSelection.setOnClickListener { replaceFragmentMain(RoomFragment()) }
-
         return binding.root
+    }
+
+    private fun numberSelectionClick(name: String) {
+        binding.btNumberSelection.setOnClickListener {
+            val transaction = activity?.supportFragmentManager?.beginTransaction()
+            transaction?.replace(R.id.main_layout, newInstanceRoom(name = name))
+            transaction?.commit()
+        }
     }
 
     @SuppressLint("SetTextI18n")
@@ -65,6 +58,7 @@ class HotelFragment : Fragment() {
             binding.tvDescription.text = hotel?.about_the_hotel?.description
             hotel?.image_urls?.let { initCarousel(it) }
             hotel?.about_the_hotel?.peculiarities?.let { setOptionRecyclerView(it) }
+            hotel?.name?.let { numberSelectionClick(it) }
         })
     }
 
@@ -86,21 +80,12 @@ class HotelFragment : Fragment() {
     }
 
     companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment HotelFragment.
-         */
-        // TODO: Rename and change types and number of parameters
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            HotelFragment().apply {
+        private const val BUNDLE_NAME_HOTEL = "name_hotel"
+
+        fun newInstanceRoom(name : String) =
+            RoomFragment().apply {
                 arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
+                    putString(BUNDLE_NAME_HOTEL, name)
                 }
             }
     }

@@ -5,8 +5,10 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.lifecycle.Observer
 import com.example.test.R
 import com.example.test.databinding.FragmentRoomBinding
+import com.example.test.presentation.adapter.RoomAdapter
 import com.example.test.utilits.replaceFragmentMain
 import com.example.test.viewmodel.HotelViewModel
 import com.example.test.viewmodel.RoomViewModel
@@ -26,16 +28,13 @@ class RoomFragment : Fragment() {
     private var _binding : FragmentRoomBinding? = null
     private val binding get() = _binding!!
     private val viewModel by viewModel<RoomViewModel>()
-
-    // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
+    private lateinit var roomAdapter : RoomAdapter
+    private var nameHotel: String? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
+            nameHotel = it.getString(BUNDLE_NAME_HOTEL)
         }
 
         viewModel.getDataRoom()
@@ -47,33 +46,21 @@ class RoomFragment : Fragment() {
     ): View? {
 
         _binding = FragmentRoomBinding.inflate(inflater, container, false)
-        binding.titleRoom.isSelected = true
         observeDataRoom()
-
         return binding.root
     }
 
     private fun observeDataRoom() {
-
+        binding.titleRoom.text = nameHotel
+        binding.titleRoom.isSelected = true
+        roomAdapter = RoomAdapter(requireContext())
+        viewModel.roomRemoteLiveData.observe(viewLifecycleOwner, Observer {room ->
+            roomAdapter.submitList(room)
+        })
+        binding.rvRoom.adapter = roomAdapter
     }
 
     companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment RoomFragment.
-         */
-        // TODO: Rename and change types and number of parameters
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            RoomFragment().apply {
-                arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
-                }
-            }
+        private const val BUNDLE_NAME_HOTEL = "name_hotel"
     }
 }

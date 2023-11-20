@@ -2,7 +2,6 @@ package com.example.test.presentation.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import com.example.domain.entity.hotel.Hotel
 import com.example.test.presentation.adapter.diffCallback.PeculiaritiesItemDiffCallback
 import com.example.test.presentation.adapter.viewholder.PeculiaritiesViewHolder
 import androidx.recyclerview.widget.ListAdapter

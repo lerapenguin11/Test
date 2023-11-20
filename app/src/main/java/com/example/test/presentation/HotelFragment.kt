@@ -19,6 +19,9 @@ import com.example.test.presentation.adapter.CarouselAdapter
 import com.example.test.presentation.adapter.PeculiaritiesAdapter
 import com.example.test.utilits.replaceFragmentMain
 import com.example.test.viewmodel.HotelViewModel
+import com.google.android.flexbox.FlexDirection
+import com.google.android.flexbox.FlexboxLayoutManager
+import com.google.android.flexbox.JustifyContent
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class HotelFragment : Fragment() {
@@ -69,9 +72,12 @@ class HotelFragment : Fragment() {
     }
 
     private fun setOptionRecyclerView(peculiarities: List<String>) {
-        val staggeredGridLayoutManager = StaggeredGridLayoutManager(2, LinearLayoutManager.VERTICAL)
-        staggeredGridLayoutManager.gapStrategy = StaggeredGridLayoutManager.GAP_HANDLING_MOVE_ITEMS_BETWEEN_SPANS
-        binding.rvPeculiarities.setLayoutManager(staggeredGridLayoutManager)
+        /*val staggeredGridLayoutManager = StaggeredGridLayoutManager(2, LinearLayoutManager.VERTICAL)
+        staggeredGridLayoutManager.gapStrategy = StaggeredGridLayoutManager.GAP_HANDLING_MOVE_ITEMS_BETWEEN_SPANS*/
+        val layoutManager = FlexboxLayoutManager(context)
+        layoutManager.flexDirection = FlexDirection.ROW
+        layoutManager.justifyContent = JustifyContent.FLEX_START
+        binding.rvPeculiarities.layoutManager = layoutManager
         optionAdapter = PeculiaritiesAdapter()
         optionAdapter.submitList(peculiarities)
         binding.rvPeculiarities.adapter = optionAdapter

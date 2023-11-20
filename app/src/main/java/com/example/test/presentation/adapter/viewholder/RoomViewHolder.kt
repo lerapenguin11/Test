@@ -8,7 +8,6 @@ import com.example.test.R
 import com.tbuonomo.viewpagerdotsindicator.DotsIndicator
 
 class RoomViewHolder(view: View) : RecyclerView.ViewHolder(view) {
-
     val name : TextView = view.findViewById(R.id.tv_room_name)
     val price : TextView = view.findViewById(R.id.tv_price_room)
     val price_per : TextView = view.findViewById(R.id.tv_price_per)

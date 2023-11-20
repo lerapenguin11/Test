@@ -4,11 +4,16 @@ import android.annotation.SuppressLint
 import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import com.example.domain.entity.room.Rooms
 import androidx.recyclerview.widget.ListAdapter
+import androidx.recyclerview.widget.RecyclerView
+import com.example.domain.entity.room.Rooms
 import com.example.test.R
 import com.example.test.presentation.adapter.diffCallback.RoomItemDiffCallback
 import com.example.test.presentation.adapter.viewholder.RoomViewHolder
+import com.google.android.flexbox.FlexDirection
+import com.google.android.flexbox.FlexboxLayoutManager
+import com.google.android.flexbox.JustifyContent
+
 
 class RoomAdapter(
     private val context: Context)
@@ -17,7 +22,7 @@ class RoomAdapter(
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RoomViewHolder {
         val view = LayoutInflater.from(parent.context)
-            .inflate(R.layout.item_room, parent, false)
+            .inflate(com.example.test.R.layout.item_room, parent, false)
 
         return RoomViewHolder(view)
     }
@@ -41,5 +46,11 @@ class RoomAdapter(
         val peculiaritiesAdapter = PeculiaritiesAdapter()
         peculiaritiesAdapter.submitList(room.peculiarities)
         holder.option.adapter = peculiaritiesAdapter
+
+        val recyclerView = holder.option
+        val layoutManager = FlexboxLayoutManager(context)
+        layoutManager.flexDirection = FlexDirection.ROW
+        layoutManager.justifyContent = JustifyContent.FLEX_START
+        recyclerView.layoutManager = layoutManager
     }
 }

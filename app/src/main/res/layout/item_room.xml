@@ -79,13 +79,15 @@
             app:layout_constraintTop_toTopOf="parent"
             tools:text="Стандартный с видом на бассейн или сад" />
 
+
+
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rv_peculiarities_room"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:orientation="vertical"
             android:layout_marginTop="8dp"
-            app:layoutManager="androidx.recyclerview.widget.StaggeredGridLayoutManager"
+            app:layoutManager="com.google.android.flexbox.FlexboxLayoutManager"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0"
             app:layout_constraintStart_toStartOf="parent"

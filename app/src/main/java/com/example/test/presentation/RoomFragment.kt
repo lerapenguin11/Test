@@ -47,6 +47,9 @@ class RoomFragment : Fragment() {
 
         _binding = FragmentRoomBinding.inflate(inflater, container, false)
         observeDataRoom()
+        binding.icBtArrowBack.setOnClickListener{
+            replaceFragmentMain(HotelFragment())
+        }
         return binding.root
     }
 

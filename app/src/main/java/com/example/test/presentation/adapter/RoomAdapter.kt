@@ -27,7 +27,9 @@ class RoomAdapter(
         val room = getItem(position)
 
         holder.name.text = room.name
-        holder.price.text = "${room.price} ₽"
+        val formattedStringPrice = StringBuilder(room.price.toString())
+            .insert(room.price.toString().length - 3, " ").toString()
+        holder.price.text = "${formattedStringPrice} ₽"
         holder.price_per.text = room.price_per
 
         val adapterViewPager = CarouselAdapter(

@@ -9,6 +9,8 @@ import android.view.ViewGroup
 import com.example.test.R
 import com.example.test.databinding.FragmentHotelBinding
 import com.example.test.presentation.adapter.CarouselAdapter
+import com.example.test.viewmodel.HotelViewModel
+import org.koin.androidx.viewmodel.ext.android.viewModel
 import java.util.Timer
 import java.util.TimerTask
 
@@ -20,6 +22,7 @@ private const val ARG_PARAM2 = "param2"
 class HotelFragment : Fragment() {
     private var _binding : FragmentHotelBinding? = null
     private val binding get() = _binding!!
+    private val viewModel by viewModel<HotelViewModel>()
     private lateinit var stringList : ArrayList<String>
 
 
@@ -33,6 +36,7 @@ class HotelFragment : Fragment() {
             param1 = it.getString(ARG_PARAM1)
             param2 = it.getString(ARG_PARAM2)
         }
+        viewModel.getDataHotel()
     }
 
     override fun onCreateView(
@@ -42,6 +46,7 @@ class HotelFragment : Fragment() {
 
         _binding = FragmentHotelBinding.inflate(inflater, container, false)
         initCarousel()
+
 
         return binding.root
     }

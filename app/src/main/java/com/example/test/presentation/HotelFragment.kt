@@ -12,6 +12,7 @@ import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.example.test.databinding.FragmentHotelBinding
 import com.example.test.presentation.adapter.CarouselAdapter
 import com.example.test.presentation.adapter.PeculiaritiesAdapter
+import com.example.test.utilits.replaceFragmentMain
 import com.example.test.viewmodel.HotelViewModel
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
@@ -47,6 +48,8 @@ class HotelFragment : Fragment() {
 
         _binding = FragmentHotelBinding.inflate(inflater, container, false)
         observeDataHotel()
+
+        binding.btNumberSelection.setOnClickListener { replaceFragmentMain(RoomFragment()) }
 
         return binding.root
     }

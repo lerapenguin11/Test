@@ -9,4 +9,6 @@
     <string name="enabled">Что включено</string>
     <string name="not_enabled">Что не включено</string>
     <string name="number_selection">К выбору номера</string>
+    <string name="more_detailed_room">Подробнее о номере</string>
+    <string name="room_number_selection">Выбрать номер</string>
 </resources>

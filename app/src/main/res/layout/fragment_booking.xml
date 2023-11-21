@@ -42,7 +42,6 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:scrollbars="vertical"
-        android:layout_marginTop="8dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/include">
 
@@ -59,7 +58,7 @@
                 android:layout_marginTop="8dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/include">
+                app:layout_constraintTop_toTopOf="parent">
 
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:id="@+id/block_rating"
@@ -103,21 +102,21 @@
                     android:layout_marginTop="8sp"
                     android:fontFamily="@font/sf_pro_display_medium"
                     android:includeFontPadding="false"
-                    tools:text="Steigenberger Makadi"
                     android:textColor="@color/black"
                     android:textSize="22sp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="@+id/block_rating"
-                    app:layout_constraintTop_toBottomOf="@+id/block_rating" />
+                    app:layout_constraintTop_toBottomOf="@+id/block_rating"
+                    tools:text="Steigenberger Makadi" />
 
                 <TextView
                     android:id="@+id/tv_adress"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
                     android:fontFamily="@font/sf_pro_display_medium"
                     android:textColor="@color/blue"
                     android:textSize="14sp"
-                    android:layout_marginTop="8dp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/tv_name_hotel"
@@ -148,7 +147,7 @@
                         android:id="@+id/departure"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_weight="1"
+                        android:layout_weight="1.5"
                         android:text="@string/departure"
                         style="@style/TextBlockDepartureLeft"/>
 
@@ -174,7 +173,7 @@
                         style="@style/TextBlockDepartureLeft"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_weight="1"
+                        android:layout_weight="1.5"
                         android:text="@string/city" />
 
                     <TextView
@@ -199,7 +198,7 @@
                         style="@style/TextBlockDepartureLeft"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_weight="1"
+                        android:layout_weight="1.5"
                         android:text="@string/date" />
 
                     <TextView
@@ -224,7 +223,7 @@
                         style="@style/TextBlockDepartureLeft"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_weight="1"
+                        android:layout_weight="1.5"
                         android:text="@string/count" />
 
                     <TextView
@@ -249,7 +248,7 @@
                         style="@style/TextBlockDepartureLeft"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_weight="1"
+                        android:layout_weight="1.5"
                         android:text="@string/hotel" />
 
                     <TextView
@@ -274,7 +273,7 @@
                         style="@style/TextBlockDepartureLeft"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_weight="1"
+                        android:layout_weight="1.5"
                         android:text="@string/room" />
 
                     <TextView
@@ -299,7 +298,7 @@
                         style="@style/TextBlockDepartureLeft"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_weight="1"
+                        android:layout_weight="1.5"
                         android:text="@string/nutrition" />
 
                     <TextView
@@ -535,7 +534,7 @@
                 app:layout_constraintTop_toBottomOf="@+id/constraintLayout">
 
                 <Button
-                    android:id="@+id/bt_number_selection"
+                    android:id="@+id/bt_pay"
                     style="?android:attr/borderlessButtonStyle"
                     android:layout_width="match_parent"
                     android:layout_height="48dp"

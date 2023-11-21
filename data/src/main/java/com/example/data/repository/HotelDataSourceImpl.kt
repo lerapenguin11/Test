@@ -3,6 +3,7 @@ package com.example.data.repository
 import com.example.data.api.HotelApi
 import com.example.data.mappers.HotelApiResponseMapper
 import com.example.domain.common.ResultTest
+import com.example.domain.entity.booking.Booking
 import com.example.domain.entity.hotel.Hotel
 import com.example.domain.entity.room.Rooms
 import kotlinx.coroutines.Dispatchers
@@ -33,6 +34,20 @@ class HotelDataSourceImpl(
                 val response = service.getRoom()
                 if (response.isSuccessful) {
                     return@withContext ResultTest.Success(mapper.toVolumeListRoom(response.body()!!))
+                } else {
+                    return@withContext ResultTest.Error(Exception(response.message()))
+                }
+            } catch (e: Exception) {
+                return@withContext ResultTest.Error(e)
+            }
+        }
+
+    override suspend fun getBooking(): ResultTest<Booking> =
+        withContext(Dispatchers.IO) {
+            try {
+                val response = service.getBooking()
+                if (response.isSuccessful) {
+                    return@withContext ResultTest.Success(mapper.toVolumeItemBooking(response.body()!!))
                 } else {
                     return@withContext ResultTest.Error(Exception(response.message()))
                 }

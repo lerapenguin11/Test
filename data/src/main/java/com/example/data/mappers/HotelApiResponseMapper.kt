@@ -1,7 +1,9 @@
 package com.example.data.mappers
 
+import com.example.data.api.model.booking.BookingApiResponse
 import com.example.data.api.model.hotel.HotelApiResponse
 import com.example.data.api.model.room.RoomApiResponse
+import com.example.domain.entity.booking.Booking
 import com.example.domain.entity.hotel.AboutTheHotel
 import com.example.domain.entity.hotel.Hotel
 import com.example.domain.entity.room.Rooms
@@ -41,5 +43,25 @@ class HotelApiResponseMapper {
             list.add(cat)
         }
         return list
+    }
+
+    fun toVolumeItemBooking(response: BookingApiResponse): Booking {
+        return Booking(
+             arrival_country = response.arrival_country,
+             departure = response.departure,
+             fuel_charge = response.fuel_charge,
+             horating = response.horating,
+             hotel_adress = response.hotel_adress,
+             hotel_name = response.hotel_name,
+             id = response.id,
+             number_of_nights = response.number_of_nights,
+             nutrition = response.nutrition,
+             rating_name = response.rating_name,
+             room = response.room,
+             service_charge = response.service_charge,
+             tour_date_start = response.tour_date_start,
+             tour_date_stop = response.tour_date_stop,
+             tour_price = response.tour_price
+        )
     }
 }

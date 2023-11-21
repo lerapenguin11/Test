@@ -1,60 +1,70 @@
 package com.example.test.presentation
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.example.test.R
+import androidx.lifecycle.Observer
+import com.example.test.databinding.FragmentBookingBinding
+import com.example.test.viewmodel.BookingViewModel
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
-
-/**
- * A simple [Fragment] subclass.
- * Use the [BookingFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
 class BookingFragment : Fragment() {
-    // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
+    private var _binding : FragmentBookingBinding? = null
+    private val binding get() = _binding!!
+    private val viewModel by viewModel<BookingViewModel>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
-        }
+        viewModel.getDataBooking()
     }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_booking, container, false)
+
+        _binding = FragmentBookingBinding.inflate(inflater, container, false)
+        observeDataBooking()
+
+        return binding.root
     }
 
+    @SuppressLint("SetTextI18n")
+    private fun observeDataBooking() {
+        viewModel.bookingRemoteLiveData.observe(viewLifecycleOwner, Observer {booking ->
+            binding.tvRating.text = "${booking?.horating} ${booking?.rating_name}"
+            binding.tvNameHotel.text = booking?.hotel_name
+            binding.tvAdress.text = booking?.hotel_adress
+            binding.tvDeparture.text = booking?.departure
+            binding.tvCity.text = booking?.arrival_country
+            binding.tvDate.text = "${booking?.tour_date_start} - ${booking?.tour_date_stop}"
+            binding.tvCount.text = "${booking?.number_of_nights} $NIGHT"
+            binding.tvHotel.text = booking?.hotel_name
+            binding.tvRoom.text = booking?.room
+            binding.tvNutrition.text = booking?.nutrition
+            binding.tvTour.text =
+                "${viewModel.formattedStringPrice(booking?.tour_price.toString())} $CURRENCY"
+            binding.tvFuelCollection.text =
+                "${viewModel.formattedStringPrice(booking?.fuel_charge.toString())} $CURRENCY"
+            binding.tvServiceFee.text =
+                "${viewModel.formattedStringPrice(booking?.service_charge.toString())} $CURRENCY"
+            val pay = "${viewModel.formattedStringPrice(
+                viewModel.getPayment(
+                booking?.tour_price,
+                booking?.fuel_charge,
+                booking?.service_charge).toString())} $CURRENCY"
+            binding.tvToBePaid.text = pay
+            binding.btPay.text = "$PAY ${pay}"
+        })
+    }
+
+
     companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment BookingFragment.
-         */
-        // TODO: Rename and change types and number of parameters
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            BookingFragment().apply {
-                arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
-                }
-            }
+        const val NIGHT = "ночей"
+        const val CURRENCY = "₽"
+        const val PAY = "Оплатить"
     }
 }

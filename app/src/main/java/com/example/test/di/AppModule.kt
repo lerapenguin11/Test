@@ -1,7 +1,9 @@
 package com.example.test.di
 
+import com.example.domain.usecase.GetBookingDataUseCase
 import com.example.domain.usecase.GetHotelDataUseCase
 import com.example.domain.usecase.GetRoomDataUseCase
+import com.example.test.viewmodel.BookingViewModel
 import com.example.test.viewmodel.HotelViewModel
 import com.example.test.viewmodel.RoomViewModel
 import org.koin.androidx.viewmodel.dsl.viewModel
@@ -17,6 +19,12 @@ val appModule = module {
     viewModel<RoomViewModel> {
         RoomViewModel(
             getRoomDataUseCase = GetRoomDataUseCase(get())
+        )
+    }
+
+    viewModel<BookingViewModel> {
+        BookingViewModel(
+            getBookingDataUseCase = GetBookingDataUseCase(get())
         )
     }
 }

@@ -1,6 +1,7 @@
 package com.example.domain.repository
 
 import com.example.domain.common.ResultTest
+import com.example.domain.entity.Tourist
 import com.example.domain.entity.booking.Booking
 import com.example.domain.entity.hotel.Hotel
 import com.example.domain.entity.room.Rooms

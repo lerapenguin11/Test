@@ -57,137 +57,145 @@
             </androidx.constraintlayout.widget.ConstraintLayout>
         </LinearLayout>
 
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/text_input_name"
-            style="@style/EditText"
-            android:layout_width="0dp"
-            android:layout_height="55dp"
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/block_info_about_tourist"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
-            app:boxStrokeWidth="0dp"
-            app:boxStrokeWidthFocused="0dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/linearLayout2"
-            app:layout_constraintVertical_chainStyle="packed">
+            tools:layout_editor_absoluteX="16dp">
 
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/et_name"
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/text_input_name"
                 style="@style/EditText"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="@string/name"
-                android:inputType="textPersonName" />
-        </com.google.android.material.textfield.TextInputLayout>
+                android:layout_width="0dp"
+                android:layout_height="55dp"
+                app:boxStrokeWidth="0dp"
+                app:boxStrokeWidthFocused="0dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_chainStyle="packed">
 
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/text_input_surname"
-            style="@style/EditText"
-            android:layout_width="0dp"
-            android:layout_height="55dp"
-            android:layout_marginTop="8dp"
-            app:boxStrokeWidth="0dp"
-            app:boxStrokeWidthFocused="0dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/text_input_name"
-            app:layout_constraintVertical_chainStyle="packed">
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/et_name"
+                    style="@style/EditText"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/name"
+                    android:inputType="textPersonName" />
+            </com.google.android.material.textfield.TextInputLayout>
 
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/et_surname"
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/text_input_surname"
                 style="@style/EditText"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="@string/surname"
-                android:inputType="textPersonName" />
-        </com.google.android.material.textfield.TextInputLayout>
+                android:layout_width="0dp"
+                android:layout_height="55dp"
+                android:layout_marginTop="8dp"
+                app:boxStrokeWidth="0dp"
+                app:boxStrokeWidthFocused="0dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/text_input_name"
+                app:layout_constraintVertical_chainStyle="packed">
 
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/text_input_date"
-            style="@style/EditText"
-            android:layout_width="0dp"
-            android:layout_height="55dp"
-            android:layout_marginTop="8dp"
-            app:boxStrokeWidth="0dp"
-            app:boxStrokeWidthFocused="0dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/text_input_surname"
-            app:layout_constraintVertical_chainStyle="packed">
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/et_surname"
+                    style="@style/EditText"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/surname"
+                    android:inputType="textPersonName" />
+            </com.google.android.material.textfield.TextInputLayout>
 
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/et_date"
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/text_input_date"
                 style="@style/EditText"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="@string/date_r"
-                android:inputType="date" />
-        </com.google.android.material.textfield.TextInputLayout>
+                android:layout_width="0dp"
+                android:layout_height="55dp"
+                android:layout_marginTop="8dp"
+                app:boxStrokeWidth="0dp"
+                app:boxStrokeWidthFocused="0dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/text_input_surname"
+                app:layout_constraintVertical_chainStyle="packed">
 
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/text_input_citizenship"
-            style="@style/EditText"
-            android:layout_width="0dp"
-            android:layout_height="55dp"
-            android:layout_marginTop="8dp"
-            app:boxStrokeWidth="0dp"
-            app:boxStrokeWidthFocused="0dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/text_input_date"
-            app:layout_constraintVertical_chainStyle="packed">
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/et_date"
+                    style="@style/EditText"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/date_r"
+                    android:inputType="date" />
+            </com.google.android.material.textfield.TextInputLayout>
 
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/et_citizenship"
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/text_input_citizenship"
                 style="@style/EditText"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="@string/citizenship"
-                android:inputType="text" />
-        </com.google.android.material.textfield.TextInputLayout>
+                android:layout_width="0dp"
+                android:layout_height="55dp"
+                android:layout_marginTop="8dp"
+                app:boxStrokeWidth="0dp"
+                app:boxStrokeWidthFocused="0dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/text_input_date"
+                app:layout_constraintVertical_chainStyle="packed">
 
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/text_input_passport_number"
-            style="@style/EditText"
-            android:layout_width="0dp"
-            android:layout_height="55dp"
-            android:layout_marginTop="8dp"
-            app:boxStrokeWidth="0dp"
-            app:boxStrokeWidthFocused="0dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/text_input_citizenship"
-            app:layout_constraintVertical_chainStyle="packed">
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/et_citizenship"
+                    style="@style/EditText"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/citizenship"
+                    android:inputType="text" />
+            </com.google.android.material.textfield.TextInputLayout>
 
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/et_passport_number"
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/text_input_passport_number"
                 style="@style/EditText"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="@string/passport_number"
-                android:inputType="number" />
-        </com.google.android.material.textfield.TextInputLayout>
+                android:layout_width="0dp"
+                android:layout_height="55dp"
+                android:layout_marginTop="8dp"
+                app:boxStrokeWidth="0dp"
+                app:boxStrokeWidthFocused="0dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/text_input_citizenship"
+                app:layout_constraintVertical_chainStyle="packed">
 
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/text_input_validity_passport"
-            style="@style/EditText"
-            android:layout_width="0dp"
-            android:layout_height="55dp"
-            android:layout_marginTop="8dp"
-            app:boxStrokeWidth="0dp"
-            app:boxStrokeWidthFocused="0dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/text_input_passport_number"
-            app:layout_constraintVertical_chainStyle="packed">
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/et_passport_number"
+                    style="@style/EditText"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/passport_number"
+                    android:inputType="number" />
+            </com.google.android.material.textfield.TextInputLayout>
 
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/et_validity_passport"
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/text_input_validity_passport"
                 style="@style/EditText"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="@string/validity_passport"
-                android:inputType="text" />
-        </com.google.android.material.textfield.TextInputLayout>
+                android:layout_width="0dp"
+                android:layout_height="55dp"
+                android:layout_marginTop="8dp"
+                app:boxStrokeWidth="0dp"
+                app:boxStrokeWidthFocused="0dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/text_input_passport_number"
+                app:layout_constraintVertical_chainStyle="packed">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/et_validity_passport"
+                    style="@style/EditText"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/validity_passport"
+                    android:inputType="text" />
+            </com.google.android.material.textfield.TextInputLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

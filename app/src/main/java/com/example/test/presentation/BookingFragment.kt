@@ -12,6 +12,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import com.example.test.R
 import com.example.test.databinding.FragmentBookingBinding
+import com.example.test.presentation.adapter.TouristAdapter
 import com.example.test.viewmodel.BookingViewModel
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import ru.tinkoff.decoro.MaskImpl
@@ -19,11 +20,11 @@ import ru.tinkoff.decoro.slots.PredefinedSlots
 import ru.tinkoff.decoro.watchers.FormatWatcher
 import ru.tinkoff.decoro.watchers.MaskFormatWatcher
 
-
 class BookingFragment : Fragment() {
     private var _binding : FragmentBookingBinding? = null
     private val binding get() = _binding!!
     private val viewModel by viewModel<BookingViewModel>()
+    private lateinit var touristAdapter : TouristAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -38,6 +39,7 @@ class BookingFragment : Fragment() {
         _binding = FragmentBookingBinding.inflate(inflater, container, false)
         observeDataBooking()
         maskPhone()
+        setRecyclerViewTourist()
 
         binding.etEmail.addTextChangedListener(object : TextWatcher {
             override fun beforeTextChanged(s: CharSequence, start: Int, count: Int, after: Int) {
@@ -48,14 +50,25 @@ class BookingFragment : Fragment() {
             }
             override fun onTextChanged(s: CharSequence, start: Int, before: Int, count: Int) {}
             override fun afterTextChanged(s: Editable) {
-                if (s.toString().trim { it <= ' ' }.length == 0) {
+                if (s.toString().trim { it <= ' ' }. length == 0) {
                     isValidEmail()
                 }
             }
         })
 
+        binding.btTouchArrow.setOnClickListener {
+            viewModel.addTourist()
+        }
 
         return binding.root
+    }
+
+    private fun setRecyclerViewTourist() {
+        touristAdapter = TouristAdapter()
+        viewModel.touristListLD.observe(viewLifecycleOwner, Observer {
+            touristAdapter.submitList(it)
+        })
+        binding.recyclerView.adapter = touristAdapter
     }
 
     private fun isValidEmail() {

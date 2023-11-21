@@ -1,18 +1,21 @@
 package com.example.data.repository
 
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import com.example.data.api.HotelApi
 import com.example.data.mappers.HotelApiResponseMapper
 import com.example.domain.common.ResultTest
+import com.example.domain.entity.Tourist
 import com.example.domain.entity.booking.Booking
 import com.example.domain.entity.hotel.Hotel
 import com.example.domain.entity.room.Rooms
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 
-class HotelDataSourceImpl(
+class HotelRemoteSourceImpl(
     private val service : HotelApi,
     private val mapper: HotelApiResponseMapper
-) : HotelDataSource
+) : HotelRemoteSource
 {
     override suspend fun getHotel(): ResultTest<Hotel> =
         withContext(Dispatchers.IO) {

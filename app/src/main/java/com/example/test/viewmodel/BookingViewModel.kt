@@ -5,12 +5,13 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.domain.common.ResultTest
+import com.example.domain.entity.Tourist
 import com.example.domain.entity.booking.Booking
 import com.example.domain.usecase.GetBookingDataUseCase
 import kotlinx.coroutines.launch
 
 class BookingViewModel(
-    private val getBookingDataUseCase: GetBookingDataUseCase
+    private val getBookingDataUseCase: GetBookingDataUseCase,
 ) : ViewModel()
 {
     private val _dataLoadingBooking = MutableLiveData(true)
@@ -21,6 +22,17 @@ class BookingViewModel(
 
     private val _bookingRemote = MutableLiveData<Booking?>()
     val bookingRemoteLiveData : MutableLiveData<Booking?> = _bookingRemote
+
+    private val touristList = mutableListOf<Tourist>()
+    private val _touristListLD = MutableLiveData<List<Tourist>>()
+    val touristListLD : LiveData<List<Tourist>> = _touristListLD
+    private val additionalTourist = mutableListOf<Tourist>()
+
+    init {
+        touristList.add(Tourist(0, "Первый турист"))
+        additionalTourist.add(Tourist(1, "Второй турист"))
+        additionalTourist.add(Tourist(2, "Третий турист"))
+    }
 
     fun getDataBooking() {
         viewModelScope.launch {
@@ -36,6 +48,8 @@ class BookingViewModel(
                 }
             }
         }
+
+        _touristListLD.value = touristList
     }
 
     fun formattedStringPrice(toString: String): String {
@@ -45,5 +59,23 @@ class BookingViewModel(
 
     fun getPayment(tour : Int?, fuel : Int?, service : Int?) : Int?{
         return tour!! + fuel!! + service!!
+    }
+
+    fun addTourist(){
+        for (tourist in touristList){
+            for (additional in additionalTourist){
+                if (tourist.id != additional.id){
+                    touristList.add(additional)
+                    additionalTourist.removeAt(0)
+                    updateTouristList()
+                }
+                break
+            }
+            break
+        }
+    }
+
+    private fun updateTouristList(){
+        _touristListLD.value = touristList
     }
 }

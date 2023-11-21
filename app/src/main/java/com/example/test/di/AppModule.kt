@@ -24,7 +24,7 @@ val appModule = module {
 
     viewModel<BookingViewModel> {
         BookingViewModel(
-            getBookingDataUseCase = GetBookingDataUseCase(get())
+            getBookingDataUseCase = GetBookingDataUseCase(get()),
         )
     }
 }

@@ -7,12 +7,15 @@ import android.text.TextWatcher
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import com.example.test.R
 import com.example.test.databinding.FragmentBookingBinding
 import com.example.test.presentation.adapter.TouristAdapter
+import com.example.test.presentation.adapter.viewholder.TouristViewHolder
+import com.example.test.utilits.replaceFragmentMain
 import com.example.test.viewmodel.BookingViewModel
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import ru.tinkoff.decoro.MaskImpl
@@ -25,6 +28,7 @@ class BookingFragment : Fragment() {
     private val binding get() = _binding!!
     private val viewModel by viewModel<BookingViewModel>()
     private lateinit var touristAdapter : TouristAdapter
+    private val touristViewHolder = view?.let { TouristViewHolder(it) }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -37,10 +41,43 @@ class BookingFragment : Fragment() {
     ): View? {
 
         _binding = FragmentBookingBinding.inflate(inflater, container, false)
+        touristAdapter = TouristAdapter(requireContext())
         observeDataBooking()
         maskPhone()
+        emailTextChangedListener()
         setRecyclerViewTourist()
+        onClickListenerAddTourist()
+        binding.btPay.setOnClickListener { checkEditTexts() }
+        binding.icBtArrowBack.setOnClickListener { replaceFragmentMain(RoomFragment()) }
 
+        return binding.root
+    }
+
+    private fun checkEditTexts() {
+        var hasEmptyEditText = true
+
+        for (editText in touristAdapter.editTextList) {
+            if (editText.text.toString().isEmpty()) {
+                isValidEmail()
+                editText.background =
+                    ContextCompat.getDrawable(
+                        requireContext(),
+                        R.drawable.bg_edittext_error)
+                hasEmptyEditText = false
+            } else{
+                editText.background =
+                    ContextCompat.getDrawable(
+                        requireContext(),
+                        R.drawable.bg_edit_text)
+            }
+        }
+
+        if (hasEmptyEditText) {
+            replaceFragmentMain(PaymentFragment())
+        }
+    }
+
+    private fun emailTextChangedListener() {
         binding.etEmail.addTextChangedListener(object : TextWatcher {
             override fun beforeTextChanged(s: CharSequence, start: Int, count: Int, after: Int) {
                 if (s.toString().trim { it <= ' ' }.length == 0) {
@@ -55,16 +92,15 @@ class BookingFragment : Fragment() {
                 }
             }
         })
+    }
 
+    private fun onClickListenerAddTourist() {
         binding.btTouchArrow.setOnClickListener {
             viewModel.addTourist()
         }
-
-        return binding.root
     }
 
     private fun setRecyclerViewTourist() {
-        touristAdapter = TouristAdapter()
         viewModel.touristListLD.observe(viewLifecycleOwner, Observer {
             touristAdapter.submitList(it)
         })

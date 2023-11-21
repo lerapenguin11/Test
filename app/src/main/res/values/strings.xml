@@ -33,4 +33,7 @@
     <string name="fuel_collection">Топливный сбор</string>
     <string name="text_service_fee">Сервисный сбор</string>
     <string name="to_be_paid">К оплате</string>
+    <string name="title_pay">Заказ оплачен</string>
+    <string name="text_pay1">Ваш заказ принят в работу</string>
+    <string name="super">Супер!</string>
 </resources>

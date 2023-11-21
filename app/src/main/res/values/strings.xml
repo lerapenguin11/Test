@@ -11,4 +11,26 @@
     <string name="number_selection">К выбору номера</string>
     <string name="more_detailed_room">Подробнее о номере</string>
     <string name="room_number_selection">Выбрать номер</string>
+    <string name="title_booking">Бронирование</string>
+    <string name="departure">Вылет из</string>
+    <string name="city">Страна, город</string>
+    <string name="date">Даты</string>
+    <string name="count">Кол-во ночей</string>
+    <string name="room">Номер</string>
+    <string name="nutrition">Питание</string>
+    <string name="title_buyer_information">Информация о покупателе</string>
+    <string name="number_phone">Номер телефона</string>
+    <string name="email">Почта</string>
+    <string name="text_info">Эти данные никому не передаются. После оплаты мы вышли чек на указанный вами номер и почту</string>
+    <string name="name">Имя</string>
+    <string name="surname">Фамилия</string>
+    <string name="date_r">Дата рождения</string>
+    <string name="citizenship">Гражданство</string>
+    <string name="passport_number">Номер загранпаспорта</string>
+    <string name="validity_passport">Срок действия загранпаспорта</string>
+    <string name="add_tourist">Добавить туриста</string>
+    <string name="tour">Тур</string>
+    <string name="fuel_collection">Топливный сбор</string>
+    <string name="text_service_fee">Сервисный сбор</string>
+    <string name="to_be_paid">К оплате</string>
 </resources>

@@ -5,7 +5,6 @@ import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.ListAdapter
-import androidx.recyclerview.widget.RecyclerView
 import com.example.domain.entity.room.Rooms
 import com.example.test.R
 import com.example.test.presentation.adapter.diffCallback.RoomItemDiffCallback
@@ -19,6 +18,8 @@ class RoomAdapter(
     private val context: Context)
     : ListAdapter<Rooms, RoomViewHolder>(
     RoomItemDiffCallback()) {
+
+    var onRoomClickListener : (() -> Unit)? = null
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RoomViewHolder {
         val view = LayoutInflater.from(parent.context)
@@ -52,5 +53,9 @@ class RoomAdapter(
         layoutManager.flexDirection = FlexDirection.ROW
         layoutManager.justifyContent = JustifyContent.FLEX_START
         recyclerView.layoutManager = layoutManager
+
+        holder.btRoomNumberSelection.setOnClickListener {
+            onRoomClickListener?.invoke()
+        }
     }
 }

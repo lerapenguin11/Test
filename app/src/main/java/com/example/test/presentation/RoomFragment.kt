@@ -14,16 +14,6 @@ import com.example.test.viewmodel.HotelViewModel
 import com.example.test.viewmodel.RoomViewModel
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
-
-/**
- * A simple [Fragment] subclass.
- * Use the [RoomFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
 class RoomFragment : Fragment() {
     private var _binding : FragmentRoomBinding? = null
     private val binding get() = _binding!!
@@ -50,7 +40,15 @@ class RoomFragment : Fragment() {
         binding.icBtArrowBack.setOnClickListener{
             replaceFragmentMain(HotelFragment())
         }
+        onClickListenerRoom()
+
         return binding.root
+    }
+
+    private fun onClickListenerRoom() {
+        roomAdapter.onRoomClickListener = {
+            replaceFragmentMain(BookingFragment())
+        }
     }
 
     private fun observeDataRoom() {

@@ -1,6 +1,7 @@
 package com.example.test.presentation.adapter.viewholder
 
 import android.view.View
+import android.widget.Button
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import androidx.viewpager.widget.ViewPager
@@ -14,4 +15,5 @@ class RoomViewHolder(view: View) : RecyclerView.ViewHolder(view) {
     val viewPager : ViewPager = view.findViewById(R.id.viewPager)
     val dotsIndicator : DotsIndicator = view.findViewById(R.id.dots_indicator)
     val option : RecyclerView = view.findViewById(R.id.rv_peculiarities_room)
+    val btRoomNumberSelection : Button = view.findViewById(R.id.bt_room_number_selection)
 }

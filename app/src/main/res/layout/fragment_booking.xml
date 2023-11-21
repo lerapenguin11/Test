@@ -352,6 +352,7 @@
                         android:layout_height="wrap_content"
                         android:hint="@string/number_phone"
                         style="@style/EditText"
+
                         android:inputType="phone" />
                 </com.google.android.material.textfield.TextInputLayout>
 

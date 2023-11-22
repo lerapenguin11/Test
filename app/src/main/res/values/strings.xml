@@ -35,5 +35,6 @@
     <string name="to_be_paid">К оплате</string>
     <string name="title_pay">Заказ оплачен</string>
     <string name="text_pay1">Ваш заказ принят в работу</string>
-    <string name="super">Супер!</string>
+    <string name="super_">Супер!</string>
+    <string name="s_1">Подтверждение заказа №<b><i>%s</i></b> может занять некоторое время (от 1 часа до суток). Как только мы получим ответ от туроператора, вам на почту придет уведомление.</string>
 </resources>
